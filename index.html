@@ -2,24 +2,13 @@
 <html lang="en">
 
 <head>
-    <!-- ===================== TASK 3: SEO IMPLEMENTATION ===================== -->
-
-    <!-- SEO: Page Title (H1 keyword-rich, under 60 chars) -->
     <title>GlowRoots Hair Growth Serum | Stop Hair Fall in Pakistan</title>
-
-    <!-- SEO: Meta Description (under 160 chars) -->
     <meta name="description"
         content="GlowRoots Hair Growth Serum with Biotin & Keratin. Stop hair fall, grow thicker hair in 30 days. Order now — Free delivery across Pakistan. Rs. 999 only.">
-
-    <!-- SEO: Keywords -->
     <meta name="keywords"
-        content="hair growth serum Pakistan, hair fall treatment Pakistan, biotin hair serum, keratin hair serum, stop hair fall, hair thickening serum, best hair serum Pakistan, hair growth oil Pakistan, hair loss solution, scalp treatment serum">
-
-    <!-- SEO: Canonical & Robots -->
+        content="hair growth serum Pakistan, hair fall treatment Pakistan, biotin hair serum, keratin hair serum, stop hair fall, hair thickening serum, best hair serum Pakistan">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://glowroots.pk/">
-
-    <!-- SEO: Open Graph for social sharing -->
     <meta property="og:title" content="GlowRoots Hair Growth Serum | Stop Hair Fall in 30 Days">
     <meta property="og:description"
         content="Pakistan's #1 Hair Growth Serum. Biotin + Keratin formula. Free delivery. Order now!">
@@ -27,7 +16,6 @@
     <meta property="og:url" content="https://glowroots.pk/">
     <meta property="og:image" content="https://glowroots.pk/images/hair-growth-serum-pakistan.jpg">
 
-    <!-- SEO: Schema Markup for Product -->
     <script type="application/ld+json">
   {
     "@context": "https://schema.org/",
@@ -50,12 +38,9 @@
   }
   </script>
 
-    <!-- SEO: URL is optimized: glowroots.pk/hair-growth-serum-pakistan -->
-
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-    <!-- Fonts: Playfair Display + DM Sans for luxury-natural feel -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link
         href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600&display=swap"
@@ -76,7 +61,9 @@
             --rose: #E8907A;
         }
 
-        * {
+        *,
+        *::before,
+        *::after {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
@@ -84,6 +71,7 @@
 
         html {
             scroll-behavior: smooth;
+            overflow-x: hidden;
         }
 
         body {
@@ -91,6 +79,8 @@
             background: var(--cream);
             color: var(--text-dark);
             overflow-x: hidden;
+            width: 100%;
+            position: relative;
         }
 
         /* ==================== ANNOUNCEMENT BAR ==================== */
@@ -124,6 +114,7 @@
             font-weight: 900;
             color: var(--deep-green);
             letter-spacing: -0.5px;
+            flex-shrink: 0;
         }
 
         .logo span {
@@ -163,6 +154,27 @@
             transform: translateY(-1px);
         }
 
+        /* ==================== HAMBURGER ==================== */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 4px;
+            flex-shrink: 0;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: var(--deep-green);
+            border-radius: 2px;
+            transition: all 0.3s;
+        }
+
         /* ==================== HERO SECTION ==================== */
         .hero {
             min-height: 88vh;
@@ -170,7 +182,7 @@
             grid-template-columns: 1fr 1fr;
             align-items: center;
             padding: 40px 5%;
-            gap: 0px;
+            gap: 0;
             background: linear-gradient(135deg, var(--warm-white) 0%, var(--cream) 100%);
             position: relative;
             overflow: hidden;
@@ -185,6 +197,11 @@
             height: 500px;
             background: radial-gradient(circle, rgba(201, 168, 76, 0.08) 0%, transparent 70%);
             border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .hero-content {
+            min-width: 0;
         }
 
         .hero-badge {
@@ -202,17 +219,18 @@
             text-transform: uppercase;
             margin-bottom: 24px;
             animation: fadeSlideUp 0.6s ease both;
+            max-width: 100%;
         }
 
-        /* SEO: H1 - Main keyword */
         .hero h1 {
             font-family: 'Playfair Display', serif;
-            font-size: clamp(38px, 5vw, 64px);
+            font-size: clamp(32px, 5vw, 64px);
             font-weight: 900;
             color: var(--deep-green);
             line-height: 1.1;
             margin-bottom: 20px;
             animation: fadeSlideUp 0.7s ease both;
+            word-wrap: break-word;
         }
 
         .hero h1 em {
@@ -235,6 +253,7 @@
             gap: 16px;
             margin-bottom: 28px;
             animation: fadeSlideUp 0.85s ease both;
+            flex-wrap: wrap;
         }
 
         .price-current {
@@ -308,6 +327,7 @@
             color: white;
         }
 
+        /* FIX: Hero trust — key fix for cut-off on mobile */
         .hero-trust {
             display: flex;
             align-items: center;
@@ -318,6 +338,7 @@
 
         .trust-stat {
             text-align: center;
+            flex-shrink: 0;
         }
 
         .trust-stat-num {
@@ -325,6 +346,7 @@
             font-size: 24px;
             font-weight: 700;
             color: var(--deep-green);
+            white-space: nowrap;
         }
 
         .trust-stat-label {
@@ -332,12 +354,14 @@
             color: var(--text-soft);
             text-transform: uppercase;
             letter-spacing: 0.5px;
+            white-space: nowrap;
         }
 
         .trust-divider {
             width: 1px;
             height: 40px;
             background: rgba(26, 58, 42, 0.15);
+            flex-shrink: 0;
         }
 
         /* ==================== HERO IMAGE ==================== */
@@ -357,7 +381,6 @@
             align-items: center;
             justify-content: center;
             position: relative;
-            overflow: visible;
         }
 
         .hero-product-img {
@@ -368,9 +391,10 @@
             z-index: 2;
             filter: drop-shadow(0 24px 48px rgba(26, 58, 42, 0.22));
             animation: float 4s ease-in-out infinite;
+            max-width: 100%;
         }
 
-        /* Floating badges on hero image */
+        /* Floating badges */
         .float-badge {
             position: absolute;
             background: white;
@@ -379,6 +403,7 @@
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.12);
             animation: float 3s ease-in-out infinite;
             z-index: 3;
+            white-space: nowrap;
         }
 
         .float-badge-1 {
@@ -434,7 +459,6 @@
         }
 
         /* ==================== BENEFITS SECTION ==================== */
-        /* SEO: H2 - Benefits keyword */
         .section {
             padding: 90px 5%;
         }
@@ -455,6 +479,7 @@
             color: var(--deep-green);
             line-height: 1.15;
             margin-bottom: 16px;
+            word-wrap: break-word;
         }
 
         .section-sub {
@@ -514,7 +539,6 @@
             margin-bottom: 20px;
         }
 
-        /* SEO: H2 subheadings for benefits */
         .benefit-title {
             font-family: 'Playfair Display', serif;
             font-size: 20px;
@@ -587,7 +611,7 @@
             line-height: 1.6;
         }
 
-        /* ==================== TIMELINE / HOW IT WORKS ==================== */
+        /* ==================== TIMELINE ==================== */
         .timeline-section {
             background: white;
             padding: 90px 5%;
@@ -711,6 +735,7 @@
             justify-content: center;
             font-size: 18px;
             color: white;
+            flex-shrink: 0;
         }
 
         .reviewer-name {
@@ -724,7 +749,7 @@
             color: var(--text-soft);
         }
 
-        /* ==================== OFFER / CTA SECTION ==================== */
+        /* ==================== OFFER / CTA ==================== */
         .offer-section {
             background: linear-gradient(135deg, var(--deep-green) 0%, var(--mid-green) 100%);
             padding: 80px 5%;
@@ -742,6 +767,7 @@
             height: 500px;
             background: radial-gradient(circle, rgba(201, 168, 76, 0.08) 0%, transparent 70%);
             border-radius: 50%;
+            pointer-events: none;
         }
 
         .offer-label {
@@ -758,14 +784,14 @@
             margin-bottom: 24px;
         }
 
-        /* SEO: H2 for CTA */
         .offer-title {
             font-family: 'Playfair Display', serif;
-            font-size: clamp(32px, 5vw, 56px);
+            font-size: clamp(30px, 5vw, 56px);
             font-weight: 900;
             color: white;
             line-height: 1.1;
             margin-bottom: 20px;
+            word-wrap: break-word;
         }
 
         .offer-title em {
@@ -811,6 +837,8 @@
             max-width: 500px;
             margin: 0 auto;
             box-shadow: 0 30px 80px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            box-sizing: border-box;
         }
 
         .order-box h3 {
@@ -850,6 +878,7 @@
             background: var(--cream);
             transition: border-color 0.2s;
             outline: none;
+            box-sizing: border-box;
         }
 
         .form-group input:focus,
@@ -909,6 +938,8 @@
             margin-top: 16px;
             font-size: 12px;
             color: var(--text-soft);
+            flex-wrap: wrap;
+            text-align: center;
         }
 
         /* ==================== TRUST SECTION ==================== */
@@ -948,7 +979,7 @@
             line-height: 1.5;
         }
 
-        /* ==================== BLOG SECTION (SEO BONUS) ==================== */
+        /* ==================== BLOG ==================== */
         .blog-section {
             background: var(--cream);
             padding: 90px 5%;
@@ -961,9 +992,10 @@
             max-width: 760px;
             margin: 40px auto 0;
             border: 1px solid rgba(201, 168, 76, 0.12);
+            box-sizing: border-box;
+            width: 100%;
         }
 
-        /* SEO: H1 for article */
         .blog-article h1 {
             font-family: 'Playfair Display', serif;
             font-size: 30px;
@@ -971,6 +1003,7 @@
             color: var(--deep-green);
             line-height: 1.2;
             margin-bottom: 12px;
+            word-wrap: break-word;
         }
 
         .blog-meta {
@@ -981,7 +1014,6 @@
             border-bottom: 1px solid rgba(0, 0, 0, 0.06);
         }
 
-        /* SEO: H2 for article subheadings */
         .blog-article h2 {
             font-family: 'Playfair Display', serif;
             font-size: 20px;
@@ -1038,7 +1070,7 @@
             }
         }
 
-        /* ==================== RESPONSIVE ==================== */
+        /* ==================== RESPONSIVE — TABLET (≤900px) ==================== */
         @media (max-width: 900px) {
             .hero {
                 grid-template-columns: 1fr;
@@ -1048,7 +1080,6 @@
             }
 
             .hero-image-wrap {
-                display: flex;
                 justify-content: center;
                 margin-top: 10px;
             }
@@ -1111,11 +1142,42 @@
             }
         }
 
+        /* ==================== RESPONSIVE — MOBILE (≤560px) ==================== */
         @media (max-width: 560px) {
 
+            /* Global overflow fix */
+            html,
+            body {
+                overflow-x: hidden;
+            }
+
             /* Nav */
+            .hamburger {
+                display: flex;
+            }
+
             .nav-links {
                 display: none;
+                position: absolute;
+                top: 58px;
+                left: 0;
+                right: 0;
+                background: white;
+                flex-direction: column;
+                padding: 20px;
+                gap: 16px;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+                z-index: 200;
+            }
+
+            .nav-links.open {
+                display: flex;
+            }
+
+            .nav-links li a {
+                font-size: 16px;
+                padding: 8px 0;
+                display: block;
             }
 
             nav {
@@ -1133,17 +1195,21 @@
 
             /* Hero */
             .hero {
-                padding: 32px 5% 10px;
-                gap: 0;
+                padding: 28px 5% 10px;
             }
 
             .hero-badge {
                 font-size: 10px;
                 padding: 5px 12px;
+                letter-spacing: 0.3px;
+                /* FIX: allow wrap so it doesn't push layout */
+                white-space: normal;
+                justify-content: center;
+                text-align: center;
             }
 
             .hero h1 {
-                font-size: 32px;
+                font-size: 28px;
                 margin-bottom: 14px;
             }
 
@@ -1154,7 +1220,6 @@
 
             .price-block {
                 justify-content: center;
-                flex-wrap: wrap;
                 gap: 10px;
             }
 
@@ -1185,35 +1250,62 @@
                 padding: 13px 20px;
             }
 
+            /* FIX: Trust stat bar — scale down labels & numbers to fit without clipping */
             .hero-trust {
-                gap: 12px;
+                justify-content: center;
+                gap: 10px;
+                margin-top: 24px;
             }
 
             .trust-stat-num {
-                font-size: 20px;
+                font-size: 18px;
             }
 
+            .trust-stat-label {
+                font-size: 9px;
+                letter-spacing: 0;
+            }
+
+            .trust-divider {
+                height: 30px;
+            }
+
+            /* Hero image */
             .hero-product-img {
                 width: 260px;
                 height: 260px;
             }
 
+            .hero-img-bg {
+                width: 260px;
+                height: 260px;
+            }
+
             .float-badge {
-                padding: 8px 12px;
+                padding: 8px 10px;
             }
 
             .float-badge-icon {
-                font-size: 16px;
+                font-size: 14px;
+                margin-bottom: 2px;
+            }
+
+            .float-badge-text {
+                font-size: 9px;
+            }
+
+            .float-badge-sub {
+                font-size: 9px;
             }
 
             .float-badge-1 {
-                top: 0px;
-                right: 0px;
+                top: 0;
+                right: 0;
             }
 
             .float-badge-2 {
                 bottom: 10px;
-                left: 0px;
+                left: 0;
             }
 
             /* Social proof */
@@ -1281,7 +1373,7 @@
             }
 
             .offer-title {
-                font-size: 28px;
+                font-size: 26px;
             }
 
             .offer-perks {
@@ -1291,7 +1383,7 @@
             }
 
             .order-box {
-                padding: 24px 20px;
+                padding: 24px 16px;
             }
 
             /* Trust */
@@ -1314,17 +1406,27 @@
             }
 
             .blog-article {
-                padding: 28px 20px;
+                padding: 24px 16px;
             }
 
             .blog-article h1 {
-                font-size: 22px;
+                font-size: 20px;
+            }
+
+            .blog-meta {
+                font-size: 11px;
             }
         }
 
+        /* ==================== RESPONSIVE — VERY SMALL (≤360px) ==================== */
         @media (max-width: 360px) {
             .hero h1 {
-                font-size: 26px;
+                font-size: 24px;
+            }
+
+            .hero-badge {
+                font-size: 9px;
+                padding: 4px 10px;
             }
 
             .ingredients-grid,
@@ -1339,6 +1441,23 @@
             .hero-product-img {
                 width: 220px;
                 height: 220px;
+            }
+
+            .hero-img-bg {
+                width: 220px;
+                height: 220px;
+            }
+
+            .hero-trust {
+                gap: 8px;
+            }
+
+            .trust-stat-num {
+                font-size: 16px;
+            }
+
+            .trust-stat-label {
+                font-size: 8px;
             }
         }
     </style>
@@ -1365,56 +1484,6 @@
         </button>
     </nav>
 
-    <style>
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            gap: 5px;
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 4px;
-        }
-
-        .hamburger span {
-            display: block;
-            width: 24px;
-            height: 2px;
-            background: var(--deep-green);
-            border-radius: 2px;
-            transition: all 0.3s;
-        }
-
-        @media (max-width: 560px) {
-            .hamburger {
-                display: flex;
-            }
-
-            .nav-links {
-                display: none;
-                position: absolute;
-                top: 60px;
-                left: 0;
-                right: 0;
-                background: white;
-                flex-direction: column;
-                padding: 20px;
-                gap: 16px;
-                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-                z-index: 200;
-            }
-
-            .nav-links.open {
-                display: flex;
-            }
-
-            .nav-links li a {
-                font-size: 16px;
-                padding: 8px 0;
-                display: block;
-            }
-        }
-    </style>
     <script>
         function toggleMenu() {
             document.getElementById('navLinks').classList.toggle('open');
@@ -1425,7 +1494,6 @@
     </script>
 
     <!-- ==================== HERO ==================== -->
-    <!-- SEO: H1 - Primary keyword for hair growth serum Pakistan -->
     <section class="hero">
         <div class="hero-content">
             <div class="hero-badge">✨ Pakistan's #1 Hair Growth Serum</div>
@@ -1437,7 +1505,7 @@
             </h1>
 
             <p class="hero-subtitle">
-                GlowRoots Hair Growth Serum combines biotin, keratin & natural oils to stop hair fall, strengthen
+                GlowRoots Hair Growth Serum combines biotin, keratin &amp; natural oils to stop hair fall, strengthen
                 follicles, and transform your hair — guaranteed.
             </p>
 
@@ -1460,7 +1528,7 @@
                 <div class="trust-divider"></div>
                 <div class="trust-stat">
                     <div class="trust-stat-num">4.8★</div>
-                    <div class="trust-stat-label">Average Rating</div>
+                    <div class="trust-stat-label">Avg Rating</div>
                 </div>
                 <div class="trust-divider"></div>
                 <div class="trust-stat">
@@ -1500,7 +1568,6 @@
     </div>
 
     <!-- ==================== BENEFITS ==================== -->
-    <!-- SEO: H2 - Benefits of hair growth serum -->
     <section class="section" id="benefits">
         <div class="section-label">Why GlowRoots Works</div>
         <h2 class="section-title">The Benefits Your<br>Hair Has Been Waiting For</h2>
@@ -1533,7 +1600,7 @@
             </div>
             <div class="benefit-card">
                 <div class="benefit-icon">💎</div>
-                <h3 class="benefit-title">Adds Shine & Softness</h3>
+                <h3 class="benefit-title">Adds Shine &amp; Softness</h3>
                 <p class="benefit-desc">Natural oils infuse deep moisture and shine into every strand, leaving hair
                     silky smooth, manageable, and beautifully lustrous.</p>
             </div>
@@ -1547,7 +1614,6 @@
     </section>
 
     <!-- ==================== INGREDIENTS ==================== -->
-    <!-- SEO: H2 - Ingredients keyword -->
     <section class="ingredients-section" id="ingredients">
         <div class="section-label">The Science Behind It</div>
         <h2 class="section-title" style="color:white;">Powerful Natural Ingredients,<br>Proven by Science</h2>
@@ -1582,11 +1648,10 @@
         </div>
     </section>
 
-    <!-- ==================== HOW IT WORKS ==================== -->
+    <!-- ==================== TIMELINE ==================== -->
     <section class="timeline-section">
         <div style="text-align:center;">
             <div class="section-label">Your Journey</div>
-            <!-- SEO: H2 -->
             <h2 class="section-title">How GlowRoots Works<br>Week by Week</h2>
         </div>
 
@@ -1619,13 +1684,11 @@
     </section>
 
     <!-- ==================== REVIEWS ==================== -->
-    <!-- SEO: H2 - Reviews trust signals -->
     <section class="reviews-section" id="reviews">
         <div style="text-align:center;">
             <div class="section-label">Real Results, Real People</div>
             <h2 class="section-title">What Our Customers Say</h2>
-            <p class="section-sub" style="margin: 0 auto;">Over 1,247 satisfied customers across Pakistan. Their stories
-                inspire us every day.</p>
+            <p class="section-sub" style="margin: 0 auto;">Over 1,247 satisfied customers across Pakistan.</p>
         </div>
 
         <div class="reviews-grid">
@@ -1642,7 +1705,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="review-card">
                 <div class="review-stars">★★★★★</div>
                 <p class="review-text">"My husband was skeptical but after one month he couldn't deny it. My hair is
@@ -1656,7 +1718,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="review-card">
                 <div class="review-stars">★★★★★</div>
                 <p class="review-text">"Used it for 6 weeks now. My scalp feels healthier, the hair feels stronger when
@@ -1673,11 +1734,10 @@
         </div>
     </section>
 
-    <!-- ==================== ORDER / CTA SECTION ==================== -->
-    <!-- SEO: H2 - Order / CTA -->
+    <!-- ==================== ORDER / CTA ==================== -->
     <section class="offer-section" id="order">
         <div class="offer-label">⏰ Limited Time Offer</div>
-        <h2 class="offer-title">Order GlowRoots Today &<br>Get <em>45% Off</em></h2>
+        <h2 class="offer-title">Order GlowRoots Today &amp;<br>Get <em>45% Off</em></h2>
         <p class="offer-desc">Don't let another day pass watching your hair fall out. Start your transformation now —
             100% risk-free.</p>
 
@@ -1731,8 +1791,7 @@
             <button class="order-btn">🛒 Place Order Now — Cash on Delivery</button>
 
             <div class="guarantee">🔒 Secure Order &nbsp;|&nbsp; 30-Day Money Back Guarantee &nbsp;|&nbsp; No Questions
-                Asked
-            </div>
+                Asked</div>
         </div>
     </section>
 
@@ -1763,8 +1822,7 @@
         </div>
     </section>
 
-    <!-- ==================== BLOG / ARTICLE (SEO BONUS) ==================== -->
-    <!-- SEO Bonus: Blog article for organic traffic -->
+    <!-- ==================== BLOG ==================== -->
     <section class="blog-section">
         <div style="text-align:center;">
             <div class="section-label">Hair Care Knowledge</div>
@@ -1772,39 +1830,35 @@
         </div>
 
         <article class="blog-article">
-            <!-- SEO: Article H1 with primary keywords -->
             <h1>Why Hair Fall Is So Common in Pakistan — And How Hair Growth Serum Can Help</h1>
             <div class="blog-meta">
                 📅 Published: June 2025 &nbsp;|&nbsp; ✍️ By GlowRoots Hair Care Team &nbsp;|&nbsp; 🏷️ Hair Growth, Hair
-                Fall Treatment, Hair Care Pakistan
+                Fall Treatment
             </div>
 
             <p>Hair fall has become one of the most common concerns across Pakistan, affecting millions of people
                 between the ages of 18 and 45. Whether you're in Karachi's humidity, Lahore's pollution, or Islamabad's
                 changing seasons — your hair is constantly under attack.</p>
 
-            <!-- SEO: H2 subheadings -->
             <h2>What Causes Hair Fall in Pakistan?</h2>
-            <p>The most frequent causes of hair fall in Pakistan include hard water with high mineral content,
-                nutritional deficiencies (especially biotin and iron), stress, heat damage from styling, and seasonal
-                changes. Hormonal imbalances, particularly in women, also play a major role.</p>
+            <p>The most frequent causes include hard water with high mineral content, nutritional deficiencies
+                (especially biotin and iron), stress, heat damage from styling, and seasonal changes. Hormonal
+                imbalances also play a major role.</p>
 
             <h2>How Does Hair Growth Serum Help?</h2>
-            <p>A quality hair growth serum — especially one formulated with biotin, keratin, and natural oils like
-                castor and argan oil — targets hair fall at its root cause. Unlike shampoos that only clean the surface,
-                a serum penetrates deep into the scalp to nourish follicles, stimulate circulation, and create the ideal
-                environment for hair growth.</p>
+            <p>A quality hair growth serum formulated with biotin, keratin, and natural oils targets hair fall at its
+                root cause. Unlike shampoos that only clean the surface, a serum penetrates deep into the scalp to
+                nourish follicles and stimulate circulation.</p>
 
             <h2>What to Look for in a Hair Growth Serum</h2>
-            <p>When choosing the best hair serum for hair fall in Pakistan, look for: (1) Biotin content for follicle
-                strengthening, (2) Keratin for structural repair, (3) Natural oils for scalp nourishment, and (4) No
-                harmful sulfates or parabens. GlowRoots Hair Growth Serum contains all of these in one lightweight,
-                non-greasy formula.</p>
+            <p>Look for: (1) Biotin content for follicle strengthening, (2) Keratin for structural repair, (3) Natural
+                oils for scalp nourishment, and (4) No harmful sulfates or parabens. GlowRoots contains all of these in
+                one lightweight, non-greasy formula.</p>
 
             <h2>How Long Does It Take to See Results?</h2>
-            <p>Most users begin to notice reduced hair fall within 2 weeks of consistent daily use. Significant new
-                growth and increased volume typically appears within 30 days. For best results, apply GlowRoots serum to
-                a clean scalp every night before bed and massage gently for 2–3 minutes.</p>
+            <p>Most users notice reduced hair fall within 2 weeks of consistent daily use. Significant new growth
+                typically appears within 30 days. Apply to a clean scalp every night before bed and massage gently for
+                2–3 minutes.</p>
         </article>
     </section>
 
@@ -1812,7 +1866,7 @@
     <footer>
         <div class="footer-logo">GlowRoots</div>
         <p>Pakistan's #1 Hair Growth Serum | Free Delivery | Cash on Delivery</p>
-        <p style="margin-top:12px;">© 2025 GlowRoots. All rights reserved. | glowroots.pk | info@glowroots.pk</p>
+        <p style="margin-top:12px;">© 2025 GlowRoots. All rights reserved. | glowroots.pk</p>
     </footer>
 
 </body>
